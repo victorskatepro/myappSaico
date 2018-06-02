@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    .container(style="padding:5px;")
+        a(type="btn btn-primary active" href="/new-product" content="Crear")    Crear
+            span(class="glyphicon glyphicon-plus")
+    div(class="container aDetallado")
+        table(id="test-table" class="table table-striped table-dark")
+            thead(id = "test-head" class="thead-dark")
+            tr(align="center")
+                th ID
+                th Nombre
+                th Descripcion
+                th Precio
+                th Eliminar
+                th Actualizar
+                tbody(align="start")
+                    for item in data
+                        tr
+                        td=item._id
+                        td=item.nombre
+                        td=item.descripcion
+                        td=item.precio
+                        td
+                            form(method="post" action="/producto/delete?_id=" + item._id)
+                                button.btn.btn-danger(type="submit")
+                                    span(class="glyphicon glyphicon-remove")
+                        td
+                            form(method="post" action="/producto/detail?_id=" + item._id)
+                                button.btn.btn-danger(type="submit")
+                                    span(class="glyphicon glyphicon-pencil")
